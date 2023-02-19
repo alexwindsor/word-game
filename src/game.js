@@ -79,7 +79,7 @@ export let game = reactive({
     async getRandomLetters() {
 
         // populate the letters array from a list of pangrammable words
-        await fetch('http://localhost/.sandpit/word_game_vuejs/6/src/php/getRandomLetters.php', {method: 'GET'})
+        await fetch('http://localhost/*** path to your project ***/src/php/getRandomLetters.php', {method: 'GET'})
             .then(response => response.json())
             .then((randomLetters) => {
                 game.letters = randomLetters;
@@ -93,7 +93,7 @@ export let game = reactive({
     async findWords() {
 
         
-        const response = await fetch('http://localhost/.sandpit/word_game_vuejs/6/src/php/findWords.php', {
+        const response = await fetch('http://localhost/*** path to your project ***/src/php/findWords.php', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

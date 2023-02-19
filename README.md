@@ -9,7 +9,11 @@ If you click on 'Get Random Letters', there is guaranteed to be at least one pan
 
 This is built using Vue3 and PHP. There is text file containing all English words that are 4 letters or longer. When words are submitted, this list is consulted by calling a php script from fetch() in the javascript, so as not to make the client have to do the work of sifting through the long list of words.
 
-To get this working, you have to download this onto a server with node.js installed as well as PHP. Download the files to a directory and type 'npm run dev' on the command line.
+To get this working, you have to download this onto a server with node.js installed as well as PHP.
+
+* Download the files to a directory and type 'npm install' on the command line, then 'npm run dev'.
+* Open the file src/game.js and change the two links to the php scripts to the correct path on your webserver.
+
 
 To deploy the project, type 'npm run build' in the project's root folder. This generates the files in the /dist folder, which you can copy to anywhere that will run the .php files. 
 
