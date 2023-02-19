@@ -71,7 +71,11 @@ onUnmounted(() => {
 
   <div v-if="game.gameState === 1" class="w-full mt-4 sm:mt-8">
 
-    You have found {{ game.userFoundWords.length }} out of a possible {{ game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length }} words to be found, including {{ game.possibleWords['pangrams'].length }} pangram(s).
+    You have found {{ game.userFoundWords.length }} out of a possible {{ game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length }} words to be found, including {{ game.userFoundPangrams.length }} out of {{ game.possibleWords['pangrams'].length }} pangram(s).
+
+    <br><br>
+
+    {{ Math.round((game.userFoundWords.length / (game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length)) * 100) }}% of words found.
 
     <div class="w-full text-center">
       <div 
@@ -86,7 +90,14 @@ onUnmounted(() => {
     
 
     <div class="my-4 text-center flex flex-wrap">
-      <div v-for="userFoundWord in game.userFoundWords" class="m-2">{{ userFoundWord }}</div>
+      <div 
+        v-for="userFoundWord in game.userFoundWords" class="m-2"
+        :class="{
+        'font-bold': game.possibleWords['pangrams'].includes(userFoundWord)
+        }
+        ">
+          {{ userFoundWord }}
+        </div>
     </div>
 
 

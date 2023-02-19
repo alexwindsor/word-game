@@ -15,6 +15,7 @@ export let game = reactive({
     userWord: '',
     possibleWords: [],
     userFoundWords: [],
+    userFoundPangrams: [],
     message: [],
 
 
@@ -79,7 +80,7 @@ export let game = reactive({
     async getRandomLetters() {
 
         // populate the letters array from a list of pangrammable words
-        await fetch('http://localhost/*** path to your project ***/src/php/getRandomLetters.php', {method: 'GET'})
+        await fetch('http://localhost/.dev/word-game/src/php/getRandomLetters.php', {method: 'GET'})
             .then(response => response.json())
             .then((randomLetters) => {
                 game.letters = randomLetters;
@@ -92,8 +93,9 @@ export let game = reactive({
 
     async findWords() {
 
-        
-        const response = await fetch('http://localhost/*** path to your project ***/src/php/findWords.php', {
+        // *** path to your project ***
+
+        const response = await fetch('http://localhost/.dev/word-game/src/php/findWords.php', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -103,9 +105,6 @@ export let game = reactive({
           });
     
         game.possibleWords = await response.json()
-
-        // game.possibleWords['pangrams'] = ['aaaa']
-        // game.possibleWords['otherWords'] = ['abbb', 'accc']
 
         game.gameState = 1
 
@@ -125,7 +124,10 @@ export let game = reactive({
         else {
             game.userFoundWords.push(userWord)
             if (game.possibleWords['otherWords'].includes(userWord)) game.message = ['Great !', 1]
-            else if (game.possibleWords['pangrams'].includes(userWord)) game.message = ['You found a pangram !!', 1]
+            else if (game.possibleWords['pangrams'].includes(userWord)) {
+                game.message = ['You found a pangram !!', 1]
+                game.userFoundPangrams.push(userWord)
+            } 
         }
 
         game.userWord = '';
@@ -148,6 +150,7 @@ export let game = reactive({
         game.userWord = ''
         game.possibleWords = []
         game.userFoundWords = []
+        game.userFoundPangrams = []        
         game.message = []
 
     }
