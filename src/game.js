@@ -80,7 +80,7 @@ export let game = reactive({
     async getRandomLetters() {
 
         // populate the letters array from a list of pangrammable words
-        await fetch('http://localhost/.dev/word-game/src/php/getRandomLetters.php', {method: 'GET'})
+        await fetch('http://192.168.1.240/.dev/word-game/src/php/getRandomLetters.php', {method: 'GET'})
             .then(response => response.json())
             .then((randomLetters) => {
                 game.letters = randomLetters;
@@ -95,7 +95,7 @@ export let game = reactive({
 
         // *** path to your project ***
 
-        const response = await fetch('http://localhost/.dev/word-game/src/php/findWords.php', {
+        const response = await fetch('http://192.168.1.240/.dev/word-game/src/php/findWords.php', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
