@@ -17,5 +17,6 @@ $file->seek($random_line);
 $random_letters = $file->current();
 $random_letters = strtoupper(trim($random_letters));
 $random_letters = str_split($random_letters);
+shuffle($random_letters);
 
 echo json_encode($random_letters);

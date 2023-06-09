@@ -75,7 +75,7 @@ onUnmounted(() => {
 
     <br><br>
 
-    {{ Math.round((game.userFoundWords.length / (game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length)) * 100) }}% of words found.
+    {{ Math.round((game.userFoundWords.length / (game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length)) * 100) }}% of words found, {{ game.possibleWords['pangrams'].length + game.possibleWords['otherWords'].length - game.userFoundWords.length }} words left to find.
 
     <div class="w-full text-center">
       <div 
